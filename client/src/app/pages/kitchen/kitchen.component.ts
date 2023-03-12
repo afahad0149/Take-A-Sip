@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { OrderList } from 'src/app/interfaces/orderlist';
-import { FoodService } from 'src/app/services/food.service';
+import { FoodService } from 'src/app/services/foodService/food.service';
 import { faRotateRight } from '@fortawesome/free-solid-svg-icons';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 import { formatDistance } from 'date-fns'
-import { NotificationService } from 'src/app/services/notification.service';
+import { NotificationService } from 'src/app/services/notificationService/notification.service';
 
 @Component({
   selector: 'app-kitchen',

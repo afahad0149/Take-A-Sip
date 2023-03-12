@@ -12,20 +12,19 @@ import { MatListModule } from '@angular/material/list';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatDialogModule } from '@angular/material/dialog';
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from './pages/home/home.component';
 import { FoodComponent } from './components/food/food.component';
 import { FoodsComponent } from './components/foods/foods.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { FoodPageComponent } from './components/food-page/food-page.component';
+import { FoodPageComponent } from './pages/food-page/food-page.component';
 import { ListComponent } from './components/list/list.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { KitchenComponent } from './components/kitchen/kitchen.component';
-import { OrderFormComponent } from './components/order-form/order-form.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
+import { KitchenComponent } from './pages/kitchen/kitchen.component';
+import { OrderFormComponent } from './pages/order-form/order-form.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 
 @NgModule({
@@ -41,7 +40,7 @@ import { DialogComponent } from './components/dialog/dialog.component';
     OrderFormComponent,
     LoginComponent,
     RegisterComponent,
-    DialogComponent
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,9 +55,9 @@ import { DialogComponent } from './components/dialog/dialog.component';
     MatCardModule,
     MatListModule,
     MatBadgeModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
