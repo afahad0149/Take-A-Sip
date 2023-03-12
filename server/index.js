@@ -1,12 +1,12 @@
-const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
-const router = require('./router');
+const express = require("express");
+const cors = require("cors");
+const mongoose = require("mongoose");
+const router = require("./router");
 const app = express();
 const PORT = 6789;
 
 const corsOptions = {
-  origin: 'http://localhost:4200',
+  origin: "http://localhost:4200",
   credentials: true,
   exposedHeaders: "Authorization",
 };
@@ -15,12 +15,10 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(router);
 
-
-(async function bootstrap () {
+(async function bootstrap() {
   try {
-    await mongoose.connect('mongodb+srv://afia:1234@cluster0.r0trdgv.mongodb.net/?retryWrites=true&w=majority');
+    await mongoose.connect(`mongodb://127.0.0.1:27017`);
     app.listen(PORT, () => console.log(`Server is listening on port ${PORT}.`));
   } catch (error) {
-    console.log(error);
   }
 })();

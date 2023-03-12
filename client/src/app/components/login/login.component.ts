@@ -43,7 +43,6 @@ login() {
         this.auth.login(val.email, val.password).subscribe({
           next: (res: any) => {
             localStorage.setItem('accessToken', res.headers.get('authorization'));
-            console.log(res.headers.get('authorization'));
             localStorage.setItem('user', JSON.stringify(res.body.user));
             
             /*For going to page after loggin in without reload */

@@ -103,8 +103,8 @@ async function registerAdmin (req, res) {
     const accessToken = jwt.sign({ _id }, secret, { expiresIn: "7d" });
     res.setHeader("Authorization", "Bearer " + accessToken);
     res
-      .status(200)
-      .send({ error: '200', message: 'Successfully added user',newUser})
+      .status(201)
+      .send({message: 'Successfully added user',newUser})
   } catch (error) {
     res
       .status(400)

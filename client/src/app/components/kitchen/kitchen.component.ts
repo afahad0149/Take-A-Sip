@@ -52,7 +52,6 @@ export class KitchenComponent implements OnInit {
       const ready = orders.filter(order => order.status === 'ready');
       this.ready = ready;
     });
-    console.log("hii",this.orders);
   }
 
   refresh() {
