@@ -11,7 +11,7 @@ async function register(req, res) {
     console.log('Got an error in the register controller')
     return res
             .status(400)
-            .send({ error: '401', message: 'User already exists' });
+            .send({ error: '400', message: 'User already exists' });
   }
   try {
     if (password === '') {
@@ -28,8 +28,8 @@ async function register(req, res) {
     const accessToken = jwt.sign({ _id }, secret, { expiresIn: "7d" });
     res.setHeader("Authorization", "Bearer " + accessToken);
     res
-      .status(200)
-      .send({ error: '200', message: 'Successfully added user',newUser})
+      .status(201)
+      .send({ error: '201', message: 'Successfully added user',newUser})
   } catch (error) {
     res
       .status(400)
@@ -44,11 +44,11 @@ async function login (req, res){
     const { email, password } = req.body;
     if (!email) {
       res
-        .status(401)
+        .status(400)
         .send("Invalid email!");
     } else if (!password)  {
       res
-        .status(401)
+        .status(400)
         .send("Invalid password!");
     } 
     
