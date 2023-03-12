@@ -3,13 +3,12 @@ const { Schema } = require('mongoose');
 const flavorSchema = new Schema({
   name: {
     type: String,
-    default: ''
-
+    default: '',
   },
   color: {
     type: String,
-    default: '#000000'
-  }
+    default: '#000000',
+  },
 });
 
 module.exports = flavorSchema;

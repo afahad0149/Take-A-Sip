@@ -4,26 +4,31 @@ const flavorSchema = require('./flavors');
 const foodSchema = new Schema({
   id: {
     type: Number,
+    required: true,
   },
   name: {
     type: String,
-    required: true
+    required: true,
   },
-  imageUrls: [String],
-  flavors: [flavorSchema],
+  imageUrls: {
+    type: [String],
+    required: true,
+  },
+  flavors: {
+    type: [flavorSchema],
+    required: true,
+  },
   selectedFlavor: {
-    type: String
+    type: String,
   },
   qty: {
     type: Number,
-    default: 1
+    default: 1,
   },
   note: {
     type: String,
-    default: ''
-  }
-
-})
-
+    default: '',
+  },
+});
 
 module.exports = foodSchema;

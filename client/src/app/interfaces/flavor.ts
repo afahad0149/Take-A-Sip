@@ -1,4 +1,4 @@
 export interface Flavor {
-    name: string;
-    color: string;
+  name: string;
+  color: string;
 }
