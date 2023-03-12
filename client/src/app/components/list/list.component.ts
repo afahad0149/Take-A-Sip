@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Food } from 'src/app/interfaces/food';
-import { FoodService } from 'src/app/services/food.service';
+import { FoodService } from 'src/app/services/foodService/food.service';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { faArrowRightLong } from '@fortawesome/free-solid-svg-icons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';

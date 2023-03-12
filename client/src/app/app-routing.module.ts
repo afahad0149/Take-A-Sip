@@ -7,8 +7,8 @@ import { KitchenComponent } from './components/kitchen/kitchen.component';
 import { OrderFormComponent } from './components/order-form/order-form.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { AuthGuard } from './services/auth.guard';
-import { AdminGuard } from './services/admin.guard';
+import { AuthGuard } from './services/authGuard/auth.guard';
+import { AdminGuard } from './services/adminGuard/admin.guard';
 
 const routes: Routes = [
   {path: "register", component: RegisterComponent},

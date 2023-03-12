@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { FOODS } from '../interfaces/food-types';
-import { Food } from '../interfaces/food';
-import { SelectedFoodAttribute } from '../interfaces/selectedFoodAttribute';
-import { OrderList } from '../interfaces/orderlist';
+import { FOODS } from '../../interfaces/food-types';
+import { Food } from '../../interfaces/food';
+import { SelectedFoodAttribute } from '../../interfaces/selectedFoodAttribute';
+import { OrderList } from '../../interfaces/orderlist';
 
 import { HttpClient } from '@angular/common/http'
-import { User } from '../interfaces/user';
+import { User } from '../../interfaces/user';
 
 
 @Injectable({
