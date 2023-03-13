@@ -20,8 +20,9 @@
     <span class="plus" (click)="plus()"><fa-icon [icon]="plusIcon"></fa-icon></span>
 
     <form [formGroup]= "noteAreaForm">
+      <label for="noteName"> Suger</label>
       <textarea type ="text"[(ngModel)]="food!.note"
-       placeholder="Special instructions...&#10;e.g. sugar 2 teaspoon(tsp.)" 
+       placeholder="... teaspoon(tsp.)" 
        class ="note-area" formControlName="noteArea" name="noteName" 
        rows="5" cols="33">
       </textarea>
