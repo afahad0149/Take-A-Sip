@@ -27,6 +27,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+const config: SocketIoConfig = { url: 'http://localhost:6789', options: {} };
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,6 +59,7 @@ import { DialogComponent } from './components/dialog/dialog.component';
     MatListModule,
     MatBadgeModule,
     MatDialogModule,
+    SocketIoModule.forRoot(config),
   ],
   providers: [],
   bootstrap: [AppComponent],

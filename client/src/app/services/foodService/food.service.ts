@@ -5,97 +5,110 @@ import { Food } from '../../interfaces/food';
 import { SelectedFoodAttribute } from '../../interfaces/selectedFoodAttribute';
 import { OrderList } from '../../interfaces/orderlist';
 
-import { HttpClient } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
 import { User } from '../../interfaces/user';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FoodService {
+  url = 'http://localhost:6789/orders';
 
-  url = 'http://localhost:6789/orders';  
-  
   listItems: Food[] = [];
-  selectedAttribute:  SelectedFoodAttribute[] = [];
+  selectedAttribute: SelectedFoodAttribute[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   /*Data passing with Api*/
   getAllOrders(): Observable<OrderList[]> {
     const token = localStorage.getItem('accessToken');
     const httpOptions = {
       headers: {
-        'Authorization': token ? token : ''
-      }
-    }
-
+        Authorization: token ? token : '',
+      },
+    };
+    console.log('here');
     return this.http.get<OrderList[]>(this.url, httpOptions);
   }
-  
-  addOrder (user: User, foods: Food[], status: string, orderfor: string, room: string) : Observable<OrderList> {
+
+  addOrder(
+    user: User,
+    foods: Food[],
+    status: string,
+    orderfor: string,
+    room: string
+  ): Observable<OrderList> {
     const httpOptions = {
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     };
-    return this.http.post<OrderList>(this.url,{ user, foods, status, orderfor,room}, httpOptions);
+    return this.http.post<OrderList>(
+      this.url,
+      { user, foods, status, orderfor, room },
+      httpOptions
+    );
   }
 
-
-  updateStatus (id: string, status: string) : Observable<OrderList> {
+  updateStatus(id: string, status: string): Observable<OrderList> {
     const token = localStorage.getItem('accessToken');
     const httpOptions = {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': token ? token : ''
-      }
+        Authorization: token ? token : '',
+      },
     };
 
-    return this.http.put<OrderList>(this.url + `/${id}/${status}`, {}, httpOptions);
+    return this.http.put<OrderList>(
+      this.url + `/${id}/${status}`,
+      {},
+      httpOptions
+    );
   }
 
-  deleteOrder(id: string) : Observable<OrderList> {
+  deleteOrder(id: string): Observable<OrderList> {
     const token = localStorage.getItem('accessToken');
     const httpOptions = {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': token ? token : ''
-      }
+        Authorization: token ? token : '',
+      },
     };
-    return this.http.delete<OrderList>(this.url + `/${id}`,httpOptions);
+    return this.http.delete<OrderList>(this.url + `/${id}`, httpOptions);
   }
-  
+
   /*Food Section*/
   getFoods(): Food[] {
     return FOODS;
   }
 
-   getFood(id: number): Observable<Food | undefined> {
-    const food = FOODS.find(food => food.id === id);
-    return of(food);    
+  getFood(id: number): Observable<Food | undefined> {
+    const food = FOODS.find((food) => food.id === id);
+    return of(food);
   }
 
- 
   /*List Part*/
-  findItemById(listItems: any, id: number,selectedFlavor: string) {
-    return listItems.find(function(item: { id: number,selectedFlavor: string }) {
+  findItemById(listItems: any, id: number, selectedFlavor: string) {
+    return listItems.find(function (item: {
+      id: number;
+      selectedFlavor: string;
+    }) {
       return item.id === id && item.selectedFlavor === selectedFlavor;
     });
-  };
+  }
 
   addToList(food: Food, selectedAttribute: SelectedFoodAttribute) {
-  let foodRef: Food = {
-    id: 0,
-    name: '',
-    imageUrls: [],
-    flavors: [],
-    selectedFlavor: '',
-    qty: 0,
-    note: 'e.g. sugar 2 teaspoon(tsp.) ...'
-  };
-    Object.assign(foodRef,food);
-    foodRef.selectedFlavor = selectedAttribute.flavor?.name
+    let foodRef: Food = {
+      id: 0,
+      name: '',
+      imageUrls: [],
+      flavors: [],
+      selectedFlavor: '',
+      qty: 0,
+      note: 'e.g. sugar 2 teaspoon(tsp.) ...',
+    };
+    Object.assign(foodRef, food);
+    foodRef.selectedFlavor = selectedAttribute.flavor?.name;
     this.listItems.push(foodRef);
     // localStorage.setItem('list', JSON.stringify(this.listItems));
     // localStorage.setItem('selectedItems', JSON.stringify(this.selectedAttribute));
@@ -107,7 +120,7 @@ export class FoodService {
     // }
     return this.listItems;
   }
-  
+
   getSelectedItems() {
     // if(localStorage.getItem('selectedItems')){
     //   this.selectedAttribute = JSON.parse(localStorage.getItem('selectedItems') || '[]');
@@ -129,7 +142,4 @@ export class FoodService {
     // localStorage.removeItem('selectedItems');
     return this.listItems;
   }
-  
-
-
 }

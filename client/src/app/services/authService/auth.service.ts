@@ -1,28 +1,45 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from '../../interfaces/user';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   api: string = 'http://localhost:6789';
-  
+
   constructor(private http: HttpClient, public router: Router) {}
 
-  register(firstName: string, lastName: string, designation: string,email: string, password: string) {
-    return this.http
-      .post<User>(`${this.api}/register`, {firstName,lastName,designation,email,password}, {observe: 'response'});
+  register(
+    firstName: string,
+    lastName: string,
+    designation: string,
+    email: string,
+    password: string
+  ) {
+    return this.http.post<User>(
+      `${this.api}/register`,
+      { firstName, lastName, designation, email, password },
+      { observe: 'response' }
+    );
   }
 
   login(email: string, password: string) {
-    return this.http
-      .post<User>(`${this.api}/login`, {email, password}, {observe: 'response'});
+    return this.http.post<User>(
+      `${this.api}/login`,
+      { email, password },
+      { observe: 'response' }
+    );
   }
 
   get isLoggedIn(): boolean {
+    console.log(localStorage.getItem('accessToken') || 'hello');
     let authToken = localStorage.getItem('accessToken');
     return authToken !== null ? true : false;
   }
@@ -31,7 +48,6 @@ export class AuthService {
     return userStr !== null ? JSON.parse(userStr) : false;
   }
 
- 
   handleError(error: HttpErrorResponse) {
     let msg = '';
     if (error.error instanceof ErrorEvent) {
@@ -39,6 +55,6 @@ export class AuthService {
     } else {
       msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-    return (msg);
+    return msg;
   }
 }
