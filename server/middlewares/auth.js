@@ -5,7 +5,7 @@ require('dotenv').config();
 const secret = process.env.JWT_SECRET;
 
 const authMiddleware = async (req, res, next) => {
-  const authHeaders = req.headers['Authorization'];
+  const authHeaders = req.headers['authorization'];
   if (!authHeaders) {
     return res.status(403).send('You are not authorized!');
   }

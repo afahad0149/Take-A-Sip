@@ -27,8 +27,10 @@ const foodSchema = new Schema({
   },
   note: {
     type: String,
-    default: '',
-  },
-});
+    default: ''
+  }
+})
 
-module.exports = foodSchema;
+const Food = model('FoodType', foodSchema);
+
+module.exports = { Food, foodSchema};

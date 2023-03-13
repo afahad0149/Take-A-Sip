@@ -30,9 +30,9 @@ export class OrderFormComponent implements OnInit {
   constructor(
     private listService: FoodService,
     private fb: FormBuilder,
-    private io: Socket,
     private http: HttpClient,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private io: Socket
   ) {}
 
   onSubmit() {

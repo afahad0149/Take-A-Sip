@@ -4,33 +4,21 @@ async function getOrders(req, res) {
   try {
     if (req.user && req.user.usertype === 'admin') {
       const orders = await Order.find({});
-      const clientOrders = orders.filter(
-        (order) => order.orderfor === 'CLIENT'
-        );
-        console.log(orders);
-        const selfOrders = orders.filter((order) => order.orderfor === 'SELF');
-        
-        res.status(200);
-        res.send([...clientOrders, ...selfOrders]);
-      } else {
-        res.status(403).send('You are not authorized.');
-      }
-    } catch (error) {
+
+      const clientOrders = orders.filter(order => order.orderfor === 'CLIENT');
+      const selfOrders = orders.filter(order => order.orderfor === 'SELF');
+
+
+      res.status(200);
+      res.send([...clientOrders, ...selfOrders]);
+    } else {
+      res.status(403).send('You are not authorized.')
+    }
+  } catch (error) {
     res.status(500);
     console.log(error);
   }
 }
-
-// async function getOrders(req, res) {
-//   try {
-//       const orders = await Order.find({});
-//       res.status(200);
-//       res.send(orders);
-//   } catch (error) {
-//     res.status(500);
-//     console.log(error);
-//   }
-// }
 
 async function postOrder(req, res) {
   try {

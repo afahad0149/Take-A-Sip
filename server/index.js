@@ -2,10 +2,10 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const router = require('./router');
+const app = express();
 const http = require('http');
 const { Server } = require('socket.io');
 
-const app = express();
 const server = http.createServer(app);
 
 // env variables
@@ -22,9 +22,11 @@ const corsOptions = {
 const io = new Server(server, { cors: corsOptions });
 io.on('connection', (socket) => {
   socket.on('gotNewOrder', () => {
-    socket.emit('kitchen refresh');
+    socket.to('kitchen').emit('kitchen_refresh');
   });
-  // console.log('first order');
+  socket.on('join_room', () => {
+    socket.join('kitchen');
+  });
 });
 
 app.use(cors(corsOptions));
